@@ -118,7 +118,7 @@ public class RepositoryTest {
        }
     }
 
-    @Test
+    //@Test
     public void testBoardList(){
         Pageable pageable = PageRequest.of(0,10, Sort.by("bno").descending());
 
@@ -129,4 +129,16 @@ public class RepositoryTest {
          System.out.println(Arrays.toString(ar));
      });
     }
+
+
+    @Test
+    public void testBoard(){
+        Object result = boardRepository.getBoardByBno(49L);
+        Object [] ar = (Object []) result;
+        System.out.println(Arrays.toString(ar));
+    }
+
+
+
+
 }
