@@ -3,10 +3,15 @@ package kr.co.js.board;
 import kr.co.js.board.dto.BoardDTO;
 import kr.co.js.board.dto.PageRequestDTO;
 import kr.co.js.board.dto.PageResultDTO;
+import kr.co.js.board.dto.ReplyDTO;
 import kr.co.js.board.service.BoardService;
+import kr.co.js.board.service.ReplyService;
+import org.apache.catalina.LifecycleState;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 public class ServiceTest {
@@ -47,7 +52,7 @@ public class ServiceTest {
         boardService.removeWithReplies(12L);
     }
 
-    @Test
+    //@Test
     public void testModify(){
         BoardDTO dto = BoardDTO.builder()
                 .bno(2L)
@@ -57,5 +62,16 @@ public class ServiceTest {
 
         boardService.modify(dto);
     }
+
+    @Autowired
+    private ReplyService replyService;
+
+    @Test
+    public void testGetReplies(){
+        List<ReplyDTO> list = replyService.getList(45L);
+        System.out.println(list);
+    }
+
+
 
 }
